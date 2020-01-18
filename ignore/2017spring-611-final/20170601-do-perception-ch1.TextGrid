@@ -1,0 +1,118 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 43.77106575963719 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "sentence" 
+        xmin = 0 
+        xmax = 43.77106575963719 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 43.77106575963719 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "token" 
+        xmin = 0 
+        xmax = 43.77106575963719 
+        intervals: size = 9 
+        intervals [1]:
+            xmin = 0 
+            xmax = 5.8614885462027795 
+            text = "" 
+        intervals [2]:
+            xmin = 5.8614885462027795 
+            xmax = 8.805898676711523 
+            text = "uzaylilar-2" 
+        intervals [3]:
+            xmin = 8.805898676711523 
+            xmax = 18.08461458326472 
+            text = "" 
+        intervals [4]:
+            xmin = 18.08461458326472 
+            xmax = 21.220770978568403 
+            text = "cuceler-2" 
+        intervals [5]:
+            xmin = 21.220770978568403 
+            xmax = 28.16810723310224 
+            text = "" 
+        intervals [6]:
+            xmin = 28.16810723310224 
+            xmax = 30.6555283526371 
+            text = "legolas-2" 
+        intervals [7]:
+            xmin = 30.6555283526371 
+            xmax = 36.60611464825986 
+            text = "" 
+        intervals [8]:
+            xmin = 36.60611464825986 
+            xmax = 39.52787724813105 
+            text = "kahve-1" 
+        intervals [9]:
+            xmin = 39.52787724813105 
+            xmax = 43.77106575963719 
+            text = "" 
+    item [3]:
+        class = "IntervalTier" 
+        name = "word" 
+        xmin = 0 
+        xmax = 43.77106575963719 
+        intervals: size = 13 
+        intervals [1]:
+            xmin = 0 
+            xmax = 5.8614885462027795 
+            text = "" 
+        intervals [2]:
+            xmin = 5.8614885462027795 
+            xmax = 8.255667627581463 
+            text = "" 
+        intervals [3]:
+            xmin = 8.255667627581463 
+            xmax = 8.805898676711523 
+            text = "baris" 
+        intervals [4]:
+            xmin = 8.805898676711523 
+            xmax = 18.08461458326472 
+            text = "" 
+        intervals [5]:
+            xmin = 18.08461458326472 
+            xmax = 20.409843807302625 
+            text = "" 
+        intervals [6]:
+            xmin = 20.409843807302625 
+            xmax = 21.220770978568403 
+            text = "arayacakmis" 
+        intervals [7]:
+            xmin = 21.220770978568403 
+            xmax = 28.16810723310224 
+            text = "" 
+        intervals [8]:
+            xmin = 28.16810723310224 
+            xmax = 30.273910404400027 
+            text = "" 
+        intervals [9]:
+            xmin = 30.273910404400027 
+            xmax = 30.6555283526371 
+            text = "mi" 
+        intervals [10]:
+            xmin = 30.6555283526371 
+            xmax = 36.60611464825986 
+            text = "" 
+        intervals [11]:
+            xmin = 36.60611464825986 
+            xmax = 38.759429697422846 
+            text = "" 
+        intervals [12]:
+            xmin = 38.759429697422846 
+            xmax = 39.52787724813105 
+            text = "kahveleri" 
+        intervals [13]:
+            xmin = 39.52787724813105 
+            xmax = 43.77106575963719 
+            text = "" 

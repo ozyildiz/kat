@@ -1,0 +1,220 @@
+#
+# Results on Wednesday May 31 2017 13:02:59 UTC.
+# USER AGENT: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:49.0) Gecko/20100101 Firefox/49.0
+# Design number was non-random = 0
+#
+# Columns below this comment are as follows:
+# 1. Time results were received.
+# 2. MD5 hash of participant's IP address.
+# 3. Controller name.
+# 4. Item number.
+# 5. Element number.
+# 6. Type.
+# 7. Group.
+# 8. Question (NULL if none).
+# 9. Answer.
+# 10. Whether or not answer was correct (NULL if N/A).
+# 11. Time taken to answer.
+1496235780,04fdd98b3b0eecbe69554a47b157144e,Question,2,1,PPP,NULL,NULL,biliyor,1,45896
+#
+# Results on Thursday June 01 2017 09:28:24 UTC.
+# USER AGENT: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:49.0) Gecko/20100101 Firefox/49.0
+# Design number was non-random = 1
+#
+# Columns below this comment are as follows:
+# 1. Time results were received.
+# 2. MD5 hash of participant's IP address.
+# 3. Controller name.
+# 4. Item number.
+# 5. Element number.
+# 6. Type.
+# 7. Group.
+# 8. Question (NULL if none).
+# 9. Answer.
+# 10. Whether or not answer was correct (NULL if N/A).
+# 11. Time taken to answer.
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,35,1,p,NULL,NULL,y,0,673
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,36,1,p,NULL,NULL,y,0,501
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,37,1,p,NULL,NULL,x,1,915
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,38,1,p,NULL,NULL,y,0,551
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,2,1,e,NULL,NULL,saniyor,1,1519
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,3,1,e,NULL,NULL,y,0,961
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,4,1,e,NULL,NULL,x,1,771
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,5,1,e,NULL,NULL,saniyor,1,467
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,6,1,e,NULL,NULL,biliyor,0,755
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,7,1,e,NULL,NULL,x,1,1574
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,8,1,e,NULL,NULL,x,1,434
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,9,1,e,NULL,NULL,biliyor,0,368
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,10,1,e,NULL,NULL,saniyor,1,1676
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,11,1,e,NULL,NULL,y,0,758
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,12,1,e,NULL,NULL,y,0,863
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,13,1,e,NULL,NULL,biliyor,0,903
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,14,1,e,NULL,NULL,biliyor,0,470
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,15,1,e,NULL,NULL,y,0,201
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,16,1,e,NULL,NULL,y,0,955
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,17,1,e,NULL,NULL,saniyor,1,431
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,18,1,e,NULL,NULL,saniyor,1,480
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,19,1,e,NULL,NULL,y,0,411
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,20,1,e,NULL,NULL,x,1,517
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,21,1,e,NULL,NULL,biliyor,0,391
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,22,1,e,NULL,NULL,biliyor,0,427
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,23,1,e,NULL,NULL,y,0,444
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,24,1,e,NULL,NULL,y,0,463
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,25,1,f,NULL,NULL,y,0,718
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,26,1,f,NULL,NULL,y,0,481
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,27,1,f,NULL,NULL,x,1,477
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,28,1,f,NULL,NULL,x,1,425
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,29,1,f,NULL,NULL,x,1,356
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,30,1,f,NULL,NULL,y,0,468
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,31,1,f,NULL,NULL,y,0,901
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,32,1,f,NULL,NULL,x,1,426
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,33,1,f,NULL,NULL,y,0,428
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,34,1,f,NULL,NULL,x,1,390
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,41,1,c,NULL,NULL,x,1,1039
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,42,1,c,NULL,NULL,y,0,421
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,43,1,c,NULL,NULL,x,1,429
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,44,1,c,NULL,NULL,x,1,383
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,39,1,n,NULL,NULL,x,1,532
+1496309305,04fdd98b3b0eecbe69554a47b157144e,Question,40,1,n,NULL,NULL,x,1,714
+#
+# Results on Friday June 02 2017 11:59:39 UTC.
+# USER AGENT: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:49.0) Gecko/20100101 Firefox/49.0
+# Design number was non-random = 2
+#
+# Columns below this comment are as follows:
+# 1. Time results were received.
+# 2. MD5 hash of participant's IP address.
+# 3. Controller name.
+# 4. Item number.
+# 5. Element number.
+# 6. Type.
+# 7. Group.
+# 8. Field name.
+# 9. Field value.
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Form,2,0,intro,NULL,name,
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Form,2,0,intro,NULL,age,2
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Form,2,0,intro,NULL,credit,no
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Form,2,0,intro,NULL,consent,yes
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Form,2,0,intro,NULL,_REACTION_TIME_,26899
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Form,3,0,intro,NULL,_REACTION_TIME_,3267
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Form,4,0,intro,NULL,_REACTION_TIME_,2007
+# Columns below this comment are as follows:
+# 1. Time results were received.
+# 2. MD5 hash of participant's IP address.
+# 3. Controller name.
+# 4. Item number.
+# 5. Element number.
+# 6. Type.
+# 7. Group.
+# 8. Question (NULL if none).
+# 9. Answer.
+# 10. Whether or not answer was correct (NULL if N/A).
+# 11. Time taken to answer.
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,29,1,p,NULL,NULL,barış,1,1854
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,30,1,p,NULL,NULL,arayacak,0,1368
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,31,1,p,NULL,NULL,valla,0,15646
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,32,1,p,NULL,NULL,kahveleri,0,1106
+# The lines below this comment are in groups of 2.
+# The formats of the lines in each of these groups are as follows:
+#
+# Line 1:
+#     Col. 1: Time results were received.
+#     Col. 2: MD5 hash of participant's IP address.
+#     Col. 3: Controller name.
+#     Col. 4: Item number.
+#     Col. 5: Element number.
+#     Col. 6: Type.
+#     Col. 7: Group.
+#     Col. 8: Field name.
+#     Col. 9: Field value.
+# Line 2:
+#     Col. 1: Time results were received.
+#     Col. 2: MD5 hash of participant's IP address.
+#     Col. 3: Controller name.
+#     Col. 4: Item number.
+#     Col. 5: Element number.
+#     Col. 6: Type.
+#     Col. 7: Group.
+#     Col. 8: Question (NULL if none).
+#     Col. 9: Answer.
+#     Col. 10: Whether or not answer was correct (NULL if N/A).
+#     Col. 11: Time taken to answer.
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Form,5,0,devam,NULL,_REACTION_TIME_,2636
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,7,1,e,NULL,NULL,sanıyor,1,1578
+# Columns below this comment are as follows:
+# 1. Time results were received.
+# 2. MD5 hash of participant's IP address.
+# 3. Controller name.
+# 4. Item number.
+# 5. Element number.
+# 6. Type.
+# 7. Group.
+# 8. Question (NULL if none).
+# 9. Answer.
+# 10. Whether or not answer was correct (NULL if N/A).
+# 11. Time taken to answer.
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,8,1,e,NULL,NULL,hatırlıyor,1,502
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,9,1,e,NULL,NULL,sanıyor,0,531
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,10,1,e,NULL,NULL,düşünüyor,1,457
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,11,1,e,NULL,NULL,biliyor,0,696
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,12,1,e,NULL,NULL,hatırlıyor,1,1803
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,13,1,e,NULL,NULL,biliyor,1,796
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,14,1,e,NULL,NULL,düşünüyor,1,464
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,15,1,e,NULL,NULL,sanıyor,1,478
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,16,1,e,NULL,NULL,düşünüyor,0,594
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,17,1,e,NULL,NULL,sanıyor,0,381
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,18,1,e,NULL,NULL,düşünüyor,1,3253
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,19,1,f,NULL,NULL,gördü,1,2163
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,20,1,f,NULL,NULL,özledi,1,3152
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,21,1,f,NULL,NULL,özledi,0,2344
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,22,1,f,NULL,NULL,özledi,1,1140
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,23,1,f,NULL,NULL,gördü,1,3478
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,24,1,f,NULL,NULL,unuttu,1,658
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,25,1,f,NULL,NULL,fark etti,1,458
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,26,1,f,NULL,NULL,unuttu,1,2162
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,27,1,f,NULL,NULL,fark etti,1,495
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,28,1,f,NULL,NULL,unuttu,1,454
+# The lines below this comment are in groups of 2.
+# The formats of the lines in each of these groups are as follows:
+#
+# Line 1:
+#     Col. 1: Time results were received.
+#     Col. 2: MD5 hash of participant's IP address.
+#     Col. 3: Controller name.
+#     Col. 4: Item number.
+#     Col. 5: Element number.
+#     Col. 6: Type.
+#     Col. 7: Group.
+#     Col. 8: Field name.
+#     Col. 9: Field value.
+# Line 2:
+#     Col. 1: Time results were received.
+#     Col. 2: MD5 hash of participant's IP address.
+#     Col. 3: Controller name.
+#     Col. 4: Item number.
+#     Col. 5: Element number.
+#     Col. 6: Type.
+#     Col. 7: Group.
+#     Col. 8: Question (NULL if none).
+#     Col. 9: Answer.
+#     Col. 10: Whether or not answer was correct (NULL if N/A).
+#     Col. 11: Time taken to answer.
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Form,6,0,son,NULL,_REACTION_TIME_,2541
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,35,1,c,NULL,NULL,Öğretmen Paris'te yaşamamış olabilir.,0,5906
+# Columns below this comment are as follows:
+# 1. Time results were received.
+# 2. MD5 hash of participant's IP address.
+# 3. Controller name.
+# 4. Item number.
+# 5. Element number.
+# 6. Type.
+# 7. Group.
+# 8. Question (NULL if none).
+# 9. Answer.
+# 10. Whether or not answer was correct (NULL if N/A).
+# 11. Time taken to answer.
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,36,1,c,NULL,NULL,Öğretmen Paris'te yaşamış.,1,1814
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,37,1,c,NULL,NULL,Referandumu yüzde yüzle kazanmamış olabilir.,0,4969
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,38,1,c,NULL,NULL,Referandumu yüzde yüzle kazanmamış olabilir.,0,1586
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,33,1,n,NULL,NULL,Ayşe'nin düşüncesi yağmur yağıyor şeklinde değil.,0,3510
+1496404780,04fdd98b3b0eecbe69554a47b157144e,Question,34,1,n,NULL,NULL,Başkanın düşüncesi ortak bir karara varmak zor olmayacak şeklinde.,1,1093

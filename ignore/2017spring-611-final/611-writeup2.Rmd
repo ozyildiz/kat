@@ -1,0 +1,623 @@
+---
+title: "Semantic prediction based on prosodic cues"
+author: "Deniz Ozyildiz"
+date: "June 19, 2017"
+output: pdf_document
+# header-includes:
+#    - \usepackage{linguex}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE}
+setwd("/home/zined/Dropbox/umass/coursework/2017-611/final/results/")
+library(plyr)
+library(xtable)
+options(digits=2)
+
+list1_raw<-read.table("/home/zined/Dropbox/umass/coursework/2017-611/final/results/list1.txt", sep=",", 
+                col.names=c("subject","md5","controller","item_no","elem_no","item_type","group","sth","answer","correct","RT"),
+                colClasses=c(rep("factor", 8), "character", "factor", "numeric"),
+                fill=T, quote = "")
+
+list2_raw<-read.table("/home/zined/Dropbox/umass/coursework/2017-611/final/results/list2.txt", sep=",", 
+                col.names=c("subject","md5","controller","item_no","elem_no","item_type","group","sth","answer","correct","RT"),
+                colClasses=c(rep("factor", 8), "character", "factor", "numeric"),
+                fill=T, quote = "")
+
+# Add column indicating which list the data comes from
+list1_raw$list=as.factor("A")
+list2_raw$list=as.factor("B")
+# Merge the two data files
+l=rbind(list1_raw,list2_raw)
+# Remove Turkish characters
+l[l$answer=="sanıyor",]$answer="saniyor"
+l[l$answer=="düşünüyor",]$answer="dusunuyor"
+l[l$answer=="hatırlıyor",]$answer="hatirliyor"
+l[l$answer=="özledi",]$answer="ozledi"
+l[l$answer=="gördü",]$answer="gordu"
+# Columns to keep
+keep=c("subject","item_no","item_type","answer","RT","list")
+l=subset(l, select=keep)
+l$speaker="do"
+l[l$item_no%in%c(13,14,15),]$speaker="ikb"
+l[l$item_no%in%c(16,17,18),]$speaker="de"
+```
+
+# Introduction[^0]
+[^0]: The audio stimuli used in this study can be accessed here:  [http://deniz.fr/prosody/](http://deniz.fr/prosody/). The file names start with an identifier number, followed by their type (e(experimental), f(iller), p(ractice), c(comprehension), and (n)eg-raising), and the speaker. For experimental and comprehension items, odd identifiers correspond to the "late focus" condition and even identifiers to the "early focus" condition.
+
+What kinds of cues do language comprehenders rely on to predict features of upcoming linguistic material? What are the kinds of features that are predicted? The present study partially addresses these questions by presenting evidence that comprehenders use prosodic information to predict the semantic class of attitude verbs.
+
+In Turkish, an SOV language where subordinate clauses occur clause medially, the prosodic phrasing of some attitude reports correlates with their factivity, that is, with a semantic or pragmatic (depending on the description) property that corresponds to whether the attitude proposition should be taken to be a true proposition or not. In factive attitude reports in Turkish, the matrix verb tends to be prosodically focused. In non-factive attitude reports, it is rather an item in the embedded clause that tends to bear prosodic focus. This difference in focus position is realized by a difference in prosodic phrasing described in the next section.
+
+There is a relation between the choice of the attitude verb and the prosodic phrasing options outlined above. For instance, a verb like "bil", which translates "know" in some contexts, occurs naturally with both phrasing options, and gives rise to the corresponding factive and non-factive interpretations. On the other hand, a verb like "san", which translates "believe", results in a marked sentence when focused. And, to the extent that the resulting sentence is interpretable, the interpretation is not factive.[^1]
+
+[^1]:Exactly why the prosodic patterns and their relation with verb classes should be observed is the topic of further research. It is natural to think that the prosodic pattern is the reflex of givenness. Yet, not every proposition that is given is contextually entailed/presupposed. ("It's possible that John bought a car. Mary said that [he bought a car]~given~." That John bought a car is given, yet not entailed.) And, conversely, not every proposition that is contextually entailed or presupposed is given. ("I was wondering why John was so careful with his money. Now I know that he [bought a car]~new~." That John bought a car is entailed, yet not given.) A fine grained understanding of the relation between givenness and entailment/presupposition is required here, which integrates the semantic properties of those items like *know*, *believe*, or *say*, that introduce propositions.
+
+The core research question underlying the present study is whether Turkish speakers rely on prosodic cues associated with focus position to make predictions about the semantic class of an upcoming attitude verb. Turkish is a language where object embedded clauses linearly precede the predicates that embed them. In incremental processing, at the point where the embedded clause has all been heard, the null hypothesis is that the comprehender does not yet know what the matrix verb is. However, matrix verbs impose interpretive restrictions on the proposition that they embed. There is a difference between saying that John *believes* that he won, and that he *knows* that he won. A question then is whether a Turkish speaker waits until the end of the utterance to compute whether the embedded proposition should be taken to be true or not, or whether they are able to tell in advance whether this is the case.
+
+Given the relation between prosodic structure and verb type, the expectation is that delayed focus, that is, not having encountered a focused item within the embedded clause, should favor the prediction of verbs like "bil". On the other hand, early focus, that is, encountering a focused item within the embedded clause, should either have no effect on prediction, or should favor the prediction of verbs like "san". (The reason behind the first expectation is that only verbs like "bil" are compatible with delayed focus. The indeterminacy between the latter two expectations (no effect vs. preference for "san") is this: Early focus is natural with "bil" and "san" alike. However, "bil" has a wider distribution than "san" in the sense that it is also natural with late focus. There might then be a preference for the item with the restricted distribution in an early focus environment, which would result in a greater rate of "san" predictions. Or there might not be such an effect.)
+
+<!-- This is realized by phrasing the matrix verb in a separate intermediate phrase from the embedded clause.  -->
+
+<!-- 1. Matrix_Subject Embedded_Clause) (~ip~Matrix_Verb) -->
+
+<!-- This is realized by phrasing that item in an intermediate phrase that excludes material preceding it, but that includes material following it. -->
+
+<!-- 2. Matrix_Subject Embedded_Subject) (~ip~Embedded_Verb Matrix_Verb) -->
+
+
+<!-- In Turkish, prosodic phrasing determines which constituent is focused (rather than, e.g., the position of pitch accents).  -->
+
+To address this research question, the present study used a two-choice completion task following the auditory presentation of incomplete sentences. The sentence fragments included a matrix subject and an embedded clause, but they were missing a matrix verb. Focus position was manipulated: Either the embedded clause contained prosodic cues suggesting that the embedded verb was focused (early focus), or it did not (late focus). After the presentation of the incomplete sentence, participants were given a choice between "factive" and "non-factive" completions, that is, a choice between the attitude verbs "bil" and "san" ("know" and "believe"), or the attitude verbs "hatirla" and "dusun" ("remember" and "think"). (For convenience and lack of better terminology, I refer to "bil" and "hatirla" as "factive" verbs and to completions involving them as "factive completions". A more appropriate designation would be "potentially factive verbs", in the sense that their factivity depends on independent factors that do not affect the interpretation of "san" or "dusun".)
+
+The main finding is that for pairs of sentences with the same lexicalization, the member of the pair in the late focus condition was associated with a greater proportion of factive completions than the member in the early focus condition. For sentences in the early focus condition, there was an overall preference for non-factive completions over factive ones. These results suggest that the first expectation is borne out: Turkish speakers use prosodic cues to predict the semantic class of attitude verbs. The results further suggest that the second expectation is resolved in favor of a stronger association between early focus and non-factive verbs proper, despite the compatibility of both potentially factive and non-factive with early focus.
+
+The upshot is that speakers of Turkish are able to know whether the proposition expressed by an embedded clause is entailed or not before they have encountered the lexical item (the attitude verb) that is sometimes taken to be responsible for the factive entailment. 
+
+# Background information
+## Realization of focus
+In Turkish, a prosodically focused word is preceded by a H(igh)- tone intonational phrase (ip) boundary and its H* pitch accent is followed by a sustained L(ow). In the following example, the possessed DP "marinas" is under prosodic focus. It is grouped in the same ip as the material following it.
+ 
+1. (ana^H\*^murlular)^H-^ (memo^H\*^linin)^H-^ (mari^H\*L^nalarini~F~ aliyor galiba)  
+people.from.anamur memoli's marinas are.buying maybe  
+Maybe the people from Anamur are buying Memoli's marinas.
+
+When the position of focus is shifted, the alignment of this "focus contour" shifts as well. In the next two examples, the possessor and the verb are respectively focused.
+
+2. (ana^H\*^murlular)^H-^ (memo^H\*L^linin~F~ marinalarini aliyor galiba)
+3. (ana^H\*^murlular)^H-^ (memo^H\*^linin mari^H\*^nalarini)^H-^ (ali^H\*L^yor~F~ galiba)  
+ 
+The incremental processing of these prosodic structures raises the question of how the listener determines which constituent is under focus. For instance, given that focused constituents are preceded by a phrase break, and that a phrase break follows the subject in the examples above, does the comprehender entertain the possessor "Memoli" as a focus site? In general, how are "regular" prosodic phenomena teased apart from prosodic phenomena aligned with the focused constituent? This question is perhaps made more challenging by the fact that pitch accents and boundary tones are sometimes confounded (as many if not most Turkish words bear final stress).
+
+An attempt at a comprehensive answer to this question falls outside of the scope of this paper, but a reasonable hypothesis is that comprehenders integrate different cues to compute the position of focus. These cues might include expectations about the linear position of focused elements (usually preverbal, but not necessarily), the possibility that some phrase boundaries are aligned with syntactic positions (subjects might be followed by phrase breaks more often than not), potential phonetic differences between the realization of regular tonal events and ones associated with focus, the position of post-focal pitch compression (the sustained L after the realization of the focused element's pitch accent), etc.
+
+A tentative generalization is that it is the head of the rightmost ip that is focused. 
+
+## Correlation between focus position and factivity
+In Turkish, object embedded clauses occur preverbally (unless they have been scrambled). An example is given below:
+
+4. Ankarali [kazandigini] biliyor.  
+person.from.Ankara that.she.won knows  
+The person from Ankara {knows, believes} that she won.
+
+In these kinds of attitude reports in Turkish, the position of prosodic focus is partially correlated with factivity. When the string in 4. is pronounced with the prosody in 5. where the matrix verb is focused, the resulting interpretation is factive. It is odd to follow the sentence up with the denial of the embedded proposition.
+
+5. (Ankarali)^H-^ (kazandigini)^H\*+H-^ (bili^H\*+L^yor~F~)  
+The person from Ankara knows that she won (\# but she didn't).
+
+When, on the other hand, the same string is pronounced with the prosody in 6. where the embedded verb is focused, the resulting interpretation is non-factive. It is perfectly acceptable to follow the sentence up with the denial of the embedded proposition. (Although this contrast is rendered in English by using "know" and "believe", the sentence in 6. is only felicitous in a proper subset of the contexts where reports introduced by "believe" are licensed.)
+
+6. (Ankarali)^H\-^ (kazandigini~F~^H\*+L^ biliyor)  
+The person from Ankara believes that she won (but she didn't).
+
+Not all verbs are like "bil", however, in allowing both prosodic structures and their associated interpretation.  A verb like "san", which usually translates the English "believe", is most natural if it occurs in an attitude report where embedded material is focused.
+
+7. (Ankarali)^H\-^ (kazandigini~F~^H\*+L^ saniyor)   
+The person from Ankara belives that she won.
+
+Focusing the matrix verb "san" is possible. Yet, contrary to the expectation based on the pattern with "bil", the resulting interpretation when "san" is focused is not factive. One possible interpretation involves contrastive focus on the matrix verb. Another involves a subtly different focus type, which perhaps it is best to call "verum" focus pending further investigation.
+
+8. (Ankarali)^H-^ (kazandigini)^H\*+H-^ (sani^H\*+L^yor~F~)   
+The person from Ankara believes that she won.
+    a. but she doesn't know~F~ it.
+    b. and although she does believe that she won, she didn't.
+
+
+In sum, the prosodic structure of Turkish attitude reports partially correlates with whether the attitude report is to be interpreted as factive or as non-factive. Although it is possible to give certain verbs (like "bil") factive and non-factive uses, it is not possible to "factivize" other verbs (like "san"). The attempt to do so results in a relatively marked structure, which requires the potentially more costly accommodation of a richer discourse situation compared to the accommodation of the factive cue.
+<!-- Whether Turkish attitude reports introduced by certain verbs are interpreted as factive or not correlates with the prosodic structure of the attitude report, specifically with the position of main prosodic focus.  --> 
+<!-- That is, the speaker is committed to the truth of the embedded proposition that Ali won, (usually) as well as the addressee (by speaker assumption).  -->
+<!-- In 1a. the matrix verb is prosodically focused. The phonological properties characteristic of this prosodic structure are that the matrix verb is preceded by a intonation phrase break, its pitch accent is realized, and is followed by a sustained low.  -->
+
+
+<!-- The speaker and the addressee are not committed to the truth of the embedded proposition.  -->
+<!-- In 1b. the embedded verb is focused. This is realized by a phrase break preceding the embedded verb, followed by the realization of the embedded verb's pitch accent and a sustained fall. -->
+
+<!-- 1. Ankarali [kazandigini] biliyor.   -->
+<!-- person.from.Ankara that.she.won knows   -->
+<!-- The person from Ankara {knows, believes} that she won.\vspace{.5em}  -->
+
+<!-- Not all attitude verbs participate in the phenomenon. In particular, verbs like *san*- ('believe') or *dusun*- ('think') remain non-factive regardless which of the prosodic patterns in 1a-b they are realized with. -->
+
+Previous elicitation studies conducted by the author suggest that the phenomenon is robust both in production and in offline judgment tasks. In pragmatic contexts where the embedded proposition cannot be taken to be true, strings like 4. are produced with the (non-factive) prosody in 6., and in ones where the proposition is taken to be true, they are produced with the (factive) prosody in 5. This contrasts with the impossibility of eliciting attitude reports with "san" in the same contexts that entail the truth of the embedded proposition. Furthermore, speakers readily offer comments such as "oh, you meant to elicit the version that means 'falsely know'", or "well this means that [the attitude holder] is right/wrong", etc. A pair of comprehension questions appended to the main experiment here corroborates this result.
+
+<!-- Given that at the point where the attitude verb is yet to be encountered, the prosodic structure of the sentence is determined, this constitutes an early cue. -->
+
+
+# Materials and methods
+The experiment consisted of three blocks of trials. The first block was a practice block to familiarize the participants with the task. The second block, henceforth referred to as "Experiment 1", tested the hypothesis that Turkish speakers are able to predict the semantic class of an attitude verb based on early prosodic cues. The third block, henceforth "Experiment 2", contained two items assessing whether participants access factive or non-factive interpretations as a function of focus position, as well as two items assessing the rate at which participants favor strong  (i.e., embedded negation) readings with negated neg-raising predicates.
+
+## Subjects, procedure and task
+38 self-reported native speakers of Turkish were recruited on Facebook. The experiment was hosted and run on Alex Drummond's Ibex Farm. Subjects were assigned to two lists by asking them to click on one of two links on the author's website (n=19 per list; range list 1=[21,47], mean list 1=30; range list 2=[22,54], mean list 2=30; gender information not collected). The number of participants in each list was balanced manually and the links were taken down when the number of participants in each list equalized at 19.
+
+Each trial in the three blocks consisted of two parts. First, an auditory stimulus was played once, automatically on page load, and with no possibility of playback. The stimulus was an incomplete sentence in the practice block and in Experiment 1, and participants were asked to complete the sentence with one of two words presented visually. In Experiment 2, the sentences were complete and the participants were asked to choose between two comprehension options.
+
+## Experiment 1: Prediction
+### Materials
+24 recordings of attitude reports were used to construct 12 experimental items, which had two versions each. An experimental item differed from the original recording in that the matrix predicate of the attitude report was segmented out in Praat.[^2] **Early focus** sentences were constructed out of attitude reports whose **embedded** predicate bore prosodic focus. **Late focus** sentences were constructed out of attitude reports whose **matrix** predicate bore prosodic focus. 
+
+Six out of the twelve experimental sentence pairs were recorded by the author. The other six pairs were recordings of two other native speakers of Turkish (one female speaker, three pairs each), and came from a previous production study carried out by the author. They were used in the present study with the written consent of the two speakers.
+
+Example 1. illustrates an item in the early focus condition, and 2., the corresponding item in the late focus condition. The a. examples illustrate the original recording with the tonal events surrounding the regions of itnerest, and the b. examples illustrate the experimental items after the matrix verb has been truncated. All experimental items had similar metrical and syntactic structures.
+
+1. **Early focus**  
+    a. Ereglili Yalova'nin ura^H\*^nyumu)^H-^ (yolladigini^H\*L^~F~ biliyor)\hfill non-truncated   
+    the.person.from.Eregli Yalova.gen uranium.acc sent know   
+    The person from Eregli believes that Yalova sent the uranium.\vspace{.25em}
+    b. Ereglili Yalova'nin ura^H\*^nyumu)^H-^ (yolladigini^H\*^ __ \hfill truncated   
+    The person from Eregli __ that Yalova sent the uranium.\vspace{.5em}
+2. **Late focus**  
+    a. Ereglili Yalova'nin ura^H\*^nyumu yolladigini^H\*+H-^) (bili^H\*L^yor~F~)\hfill non-truncated   
+    the.person.from.Eregli Yalova.gen uranium.acc sent know   
+    The person from Eregli believes that Yalova sent the uranium.\vspace{.25em}
+    b. Ereglili Yalova'nin ura^H\*^nyumu yolladigini^H\*+H-^) __ \hfill truncated   
+    The person from Eregli __ that Yalova sent the uranium.
+    
+The minimal difference between the truncated early and late focus sentences was the presence or absence of an ip boundary between the embedded direct object and the embedded predicate. This constitutes a partial and indirect cue to the location of focus, but one that is unambiguous (if ideally produced, as will be seen in the noise in the results of Experiment 1). The concern here is whether the stimulus in 1b. is also compatible with matrix verb focus? The answer is negative. Matrix verb focus would require that the embedded verb's pitch accent be parsed as an ip boundary (given that foci are preceded by an ip boundary). But the resulting prosodic structure, given in 3., is not natural. (It\ldots\ would\ldots\ sound\ldots\ like\ldots\ this, in the region of interest.)
+
+3. Ereglili Yalova'nin uranyumu) (yolladigini) (biliyor)
+
+Is the stimulus in 2b compatible with embedded verb focus? Again, the answer is negative. Embedded verb focus would have required the presence of an ip boundary before the embedded verb, which is absent from the stimulus. Consequently, although the truncated stimuli do not feature the full range of tonal events associated with prosodic focus, the location of the focused constituent is recoverable from the information available.
+
+The early focus and late focus versions of the 12 experimental item pairs were distributed across two lists. Each list contained an equal number of sentences in each condition, and two different versions of the same item never appeared in the same list. In addition to the experimental items, each list contained the same set of 10 fillers. The fillers consisted of 6 truncated monoclausal sentences and 4 truncated attitude reports. The position of focus on the fillers varied, but never fell on the same kind of position as in the experimental items. (This was impossible for the monoclausal sentences, whose verb was truncated. Focus fell on some constituent other than the embedded predicate in the attitude report fillers.) All of the fillers came from previous recordings of the two other speakers. In total, participants listened to 22 Turkish sentences in Experiment 1 (12 experimental items, 10 filler items).[^3] Examples of fillers are given below:
+
+1. Monoclausal filler
+    a. (Ere\v{g}^H\*^lililer)^H-^ (ann^H\*L^anenin~F~ manolyalar\i{}n\i{} yoluyor galiba)   
+    the.people.from.Eregli the.grandmother's magnolias are.plucking maybe   
+    Maybe the people from Eregli are plucking the grandmother's magnolias.\vspace{.25em}
+    b. (Ere\v{g}^H\*^lililer)^H-^ (ann^H\*L^anenin~F~ manolyalar\i{}n\i{} __   
+    The people from Eregli are __ the grandmother's magnolias.\vspace{.5em}
+2. Attitude report filler  
+    a. (Ala^H\*^nyal\i{}lar)^H-^ (Ala^H\*L^ra'n\i{}n~F~ arayolu o\v{g}rendi\v{g}ini biliyor galiba)  
+    the.people.from.Alanya Alara side.road learn know maybe   
+    The people from Alanya know that Alara has learned the side road.\vspace{.25em}
+    b. (Ala^H\*^nyal\i{}lar)^H-^ (Ala^H\*L^ra'n\i{}n~F~ arayolu o\v{g}rendi\v{g}ini __   
+    The people from Alanya __ that Alara has learned the side road.
+
+
+The auditory presentation of the experimental items and the fillers was followed by the written presentation of two verbs among which the participants were asked to choose. The specific instruction read "Complete the sentences that you hear in a way that sounds appropriate to you."
+
+For every experimental item, participants were asked to choose between a factive ("biliyor" for "know", or "hatirliyor" for "remember") or a non-factive completion ("saniyor" for "believe", or "dusunuyor" for "think"). Six out of the twelve experimental items were presented with the "know/believe" pair, the other six with the "remember/think" pair. After the auditory presentation of 1., the participant would be asked to choose between the options in 2.
+
+1. Truncated sentence:  
+Ereglili [Yalova'nin uranyumu yolladigini] __  
+the.person.from.Eregli Yalova the.uranium sent  
+The person from Eregli __ that Yalova sent the uranium.
+2. Completion options:  
+{biliyor, saniyor}  
+{knows, believes}
+
+The expectation was that the manipulation of focus position would have an effect on sentence completion. Participants should prefer a factive completion in the late focus condition compared to the early focus condition, where one of two outcomes is expected. In the early focus condition, either a preference should fail to be observed or a preference for non-factive verb completions should be preferred. 
+
+Five fillers were given with one pair of completions ("fark etti" for "realized"/"unuttu" for "forgot"), the other five with another pair ("gordu" for "saw"/"ozledi" for "missed"). It was thought that the experimental design would be disguised by the inclusion of different focus positions for the fillers, as well as the inclusion of a number of completion options roughly equal to the number of experimental completion options.
+
+
+
+<!-- whose final word or words were segmented out in Praat.[^1] For every item, participants were asked to complete the sentence by choosing one out of two words. The completions corresponded to the sentence's main predicate. An example of an experimental item is given below. The original sentence is an attitude report embedded under the attitude predicate "biliyor". This final word was truncated from the recording, which was played to the participants, who then completed the sentence by choosing from one of two attitude predicates. -->
+
+<!-- 1. Full sentence:   -->
+<!-- Ereglili [Yalova'nin uranyumu yolladigini] biliyor.   -->
+<!-- the.person.from.Eregli Yalova the.uranium sent know   -->
+<!-- The person from Eregli knows that Yalova sent the uranium. -->
+
+<!-- The audio file played once on a blank screen with a central fixation cross, when the page was loaded. Participants did not have control over playback. -->
+
+<!-- The experimental items fell into two conditions: **Early focus** and **late focus**. In the early focus condition, the embedded predicate bore prosodic focus. In the late focus, the matrix predicate bore prosodic focus. Focus, in Turkish, is realized by a H(igh)- prosodic phrase boundary preceding the left edge of the focused item, followed by the realization of the focused item's H* pitch accent, followed by a sustained L(ow) referred to as post-focal pitch compression [References]. The relevant prosodic structure for the original sentences (before truncation), and their structure after truncation are given below: -->
+
+
+
+<!-- Given X [**Refer to background section**],  -->
+
+### An error in the distribution of items in lists
+Two pairs of verbs were included as completion options: "believe/know" and "think/remember." This factor was confounded, in the present design, with the focus position factor. As a result, all of the late focus sentences in the first list were presented with the "believe/know" pair, and all of the early focus sentences in the first list were presented with the "think/remember" pair. The situation was reversed in the second list, where all the early focus sentences were presented with "believe/know" and all the late focus ones with "think/remember." This confound should not undermine a comparison between items across the two lists. But it does affect within list comparison. Indeed any difference observed between the early focus and late focus conditions within a list could either be attributed to an effect of focus position, or to the effect of the confounded verb choice factor.
+
+Ideally, half of the late focus sentences should have been presented with one verb pair, and the other half with the other pair.
+
+<!-- The distribution of items per  -->
+<!-- ```{r echo=FALSE} -->
+<!-- stims=data.frame(id=seq(1:24),  -->
+<!--                  speaker=c(rep("do",12),rep("de",6),rep("ikb",6)), -->
+<!--                  list=rep(c("A","B"),12), -->
+<!--                  focus_condition=rep(c("LF","EF"),12), -->
+<!--                  verb_choice=rep(c("believe/know","believe/know","think/remember","think/remember"),6)) -->
+<!-- print(stims) -->
+<!-- ``` -->
+
+
+
+<!-- Ideal distribution -->
+<!-- ```{r echo=FALSE} -->
+<!-- stims=data.frame(id=seq(1:24),  -->
+<!--                  speaker=c(rep("do",12),rep("de",6),rep("ikb",6)), -->
+<!--                  list=rep(c("A","B"),12), -->
+<!--                  focus_condition=rep(c("LF","EF"),12), -->
+<!--                  verb_choice=rep(c(rep("believe/know",4),rep("think/remember",4)),3)) -->
+<!-- print(stims) -->
+<!-- ``` -->
+
+
+[^2]: A methodological issue raised by this kind of segmentation is coarticulation. The end of the truncated audio stimuli may still carry acoustic cues revealing the initial segment of the truncated material. The concern is that participants could be relying on such cues to predict, e.g., the word "biliyor" based on acoustic cues to an upcoming [b] (especially when the option does not begin with a [b]). However, all of the experimental items were segmented out of carrrier sentences whose final word was "biliyor". This makes the bias in favor of [b] initial responses uniform across items in various conditions.
+
+[^3]: Each participant was exposed to a total of 30 sentences (4 practice, 22 in Experiment 1, 4 in Experiment 2). 14  sentences (4 practice, 6 experimental items in Experiment 1, and 4 items in Experiment 2) were ones recorded by the author; 8 sentences (3 experimental items and 5 fillers in Experiment 1) were ones recorded by each of the other two speakers.
+
+## Experiment 2: Neg-raising and Comprehension
+At the end of the main experimental block, participants listened to 4 additional items recorded by the author and were asked to choose between two comprehension options. 
+
+Two out of the four items were attitude reports introduced by the neg-raising predicate ``dusun-'' (think). The matrix predicate was negated and participants were asked to choose between two unambiguous paraphrases, one with embedded negation and the other with matrix negation.
+
+1. Ayse yagmur yagdigini dusun**mu**yor.   
+Ayse rain falling think.neg
+Ayse doesn't think that it's raining.\vspace{.25em}
+    1. Ayse'nin dusuncesi "yagmur yag**mi**yor" seklinde.   
+    Ayse's thought is of the form: "It's not raining."\vspace{.25em}
+    2. Ayse'nin dusuncesi "yagmur yagiyor" seklinde **degil**.   
+    Ayse's thought is not of the form: "It's raining."\vspace{.25em}
+2. Bolum baskani ortak bir karara varmanin zor olacagini dusun**mu**yor.   
+department head joint one decision arrive.at hard be think.neg   
+The department head doesn't think that it will be hard to reach a joint decision.\vspace{.25em}
+    1. Baskanin dusuncesi "ortak bir karara varmak zor ol**ma**yacak" seklinde.   
+    The head's thought is of the form: "It won't be hard to come to a joint decision."\vspace{.25em}
+    2. Baskanin dusuncesi "ortak bir karara varmak zor olacak" seklinde **degil**.   
+    The head's thought is not of the form: "It will be hard to come to a joint decision." 
+
+Based on the offline preference for embedded negation readings, it was expected that the proportion of embedded negation paraphrases would be greater than the proportion of matrix negation paraphrases.
+
+The other two items were attitude reports introduced by ``bil'' (know). Each participant saw one item in an early focus condition, and the other in a late focus condition. The participants were asked to choose between two options, one which paraphrased the factive implication, the other that paraphrased the lack of a factive implication.
+
+1. Merve ogretmeninin Paris'te yasamis oldugunu biliyor.   
+Merve her.teacher in.Paris live be know   
+Merve {knows, believes} that her teacher has lived in Paris.\vspace{.25em}
+    1. Ogretmen Paris'te yasamis.   
+    The teacher lived in Paris. \vspace{.25em}
+    2. Ogretmen Paris'te yasamamis olabilir.   
+    The teacher might not have lived in Paris.\vspace{.25em}
+2. Recep referandumu yuzde yuzle kazandigini biliyor.   
+Recep referandum 100 100.with win know   
+Recep knows that he won the referandum with 100%.\vspace{.25em}
+    1. Referandumu yuzde yuzle kazanmis.   
+    He won the referandum with 100%.\vspace{.25em}
+    2. Referandumu yuzde yuzle kazanmamis olabilir.   
+    He might not have won the referandum with 100%.
+
+It was expected that the proportion of factive inference choices would be greater in the late focus condition than in the early focus condition.
+
+# Results
+## Prediction
+
+```{r echo=FALSE}
+le=droplevels(subset(l, item_type=="e"))
+#le$item_no<-factor(le$item_no,seq(7,18))
+
+#le[le$list=="A",]$item_no=le[le$list=="A",]$item_no+1
+#levels(le$item_no)=seq(7,18)
+# List of factive sentences per list
+fsl1=c(7,9,11,13,15,17)
+fsl2=c(8,10,12,14,16,18)
+le$condition=NA
+le[le$list=="A"&le$item_no%in%fsl1,]$condition="f"
+le[le$list=="A"&!(le$item_no%in%fsl1),]$condition="nf"
+le[le$list=="B"&le$item_no%in%fsl2,]$condition="f"
+le[le$list=="B"&!(le$item_no%in%fsl2),]$condition="nf"
+le$vchoice=NA
+le[le$answer=="saniyor"|le$answer=="biliyor",]$vchoice="sb"
+le[le$answer=="hatirliyor"|le$answer=="dusunuyor",]$vchoice="dh"
+le$answer_type=NA
+le[le$answer=="biliyor"|le$answer=="hatirliyor",]$answer_type=1
+le[le$answer=="dusunuyor"|le$answer=="saniyor",]$answer_type=0
+
+le$item_no=factor(le$item_no,seq(from=7,to=18))
+
+lea=droplevels(subset(le,le$list=="A")) 
+leb=droplevels(subset(le,le$list=="B"))
+```
+### Overall response pattern
+```{r echo=FALSE}
+nfact=sum(subset(le, answer_type==1)$answer_type)
+nfactA=sum(subset(le, answer_type==1&list=="A")$answer_type)
+nfactB=sum(subset(le, answer_type==1&list=="B")$answer_type)
+```
+The global response pattern for the study is reported in Table 1. In the full data set, there was a total of 33% factive responses. Within each of the two lists, similar proportions of factive responses were observed (76/228=33% in list A; 73/228=32% in list B). Thus, one third of the time on average, participants selected a factive completion over a non-factive one.
+
+```{r echo=FALSE, results="asis"} 
+# print(xtable::xtable(
+#   data.frame("obs"=c("number of factive responses (count)","total number of observations (count)","proportion of factive observations (%)"),"overall"=c(nfact,nrow(le),nfact*100/nrow(le)),"list A"=c(nfactA,nrow(lea),nfactA*100/nrow(lea)),"list B"=c(nfactB,nrow(leb),nfactB*100/nrow(leb))),
+#   align=c("@{}l", "@{}l", "c", "c", "c@{}"),
+#   digits=c(0,0,0,0,0),
+#   type="latex",
+#   caption="Proportion of factive vs. non-factive responses"
+#   ), 
+#   comment=F, 
+#   include.rownames = F
+#   )
+```
+
+```{r echo=FALSE}
+tab1=ftable(le$answer_type,le$list,le$condition)
+#tab1
+tab2=ftable(le$answer_type,le$list,le$condition)/114*100
+#tab2
+ctable=data.frame(
+  "measure"=c("n factive completion", "% factive completion", "n non-factive completion", "% non-factive completion", "n total"),
+  "list AxLF"=c(tab1[3,1], tab2[3,1], tab1[1,1], tab2[1,1], 114),
+  "list AxEF"=c(tab1[3,2], tab2[3,2], tab1[1,2], tab2[1,2], 114), 
+  "list BxLF"=c(tab1[4,1], tab2[4,1], tab1[2,1], tab2[2,1], 114),
+  "list BxEF"=c(tab1[4,2], tab2[4,2], tab1[2,2], tab2[2,2], 114),
+  "total"=c(149, 33, 307, 67, 456),
+  check.names = F
+)
+```
+
+```{r echo=FALSE,results="asis"}
+print(xtable::xtable(ctable, 
+                     digits=0, 
+                     align=c("@{}l", "l", "c", "c", "c", "c", "c@{}"),
+                     type="latex",
+                     caption="Counts and proportion of factive and non-factive completions per condition"),
+      hline.after=c(-1,0,2,4,5),
+      comment=F
+      )
+```
+
+The proportion of factive completions in the early focus and late focus conditions showed a discrepancy across the two lists. In list A, 57% of responses in the late focus condition were factive responses, compared to 10% of responses in the early focus condition. The effect of focus position in list A was thus in the direction expected under the hypothesis that late focus is more strongly associated with factive verb completions. 
+
+In list B, on the other hand, 29% of responses in the late focus condition were factive responses, compared to 35% in the early focus condition. *Depending on the result of a statistical test*, in list B, the effect is either reversed, i.e., early focus is more strongly associated with factive completions, or there is no evidence for an effect of focus position. Given this discrepancy between the two lists, it might not be sound to conclude that late focus favors factive completions from the overall response pattern. 
+
+One explanation for the result in list B may be that the experimental items were somehow ambiguous or unclear, prompting a response pattern that seems, overall, to be at chance. A second explanation might come from the fact that in the present design, the independent variables corresponding to the two lists and to the completion options were confounded. That is, participants in list A saw the "believe/know" option for factive items and the "think/remember" option for the non-factive items, and vice versa in list B. Consequently, late focus might more strongly be associated with "know" than it is with "remember".  
+ 
+### Paired by items analysis
+Table 1 shows that the set of items in the late focus condition in list A prompted a greater proportion of factive completions compared to the same set of items in the early focus condition in list B (57% vs. 35%). Similarly, the set of items in the late focus condition in list B prompted a greater proportion of factive completions compared to the same set of items in the early focus condition in list A (29% vs. 10%). This pattern suggests that although the effect of focus position was not consistent within lists, it was observed across lists.
+
+Table 2 breaks down the results by items. The top half of Table 2 includes those items that were in the late focus condition in list A, and in the early focus condition in list B. The bottom half includes those items that were in the late focus condition in list B, and in the early focus condition in list A. The effect of focus position can be seen for each item by comparing the second and third cells (late focus) to the fourth and fifth cells (early focus) in each row. The former values are consistently greater than the latter. (This is not the case for item 12. Upon listening to item 12 in the late and early focus the author concedes that the two versions sound alike, that the late focus version sounds like an early focus token.)
+```{r echo=FALSE}
+ttable=ftable(le$answer_type,le$item_no,le$condition)#[13:24,1:2]
+ctable2=data.frame(
+  "Item"=c(1:12),
+  "LF (n=19)"=ttable[13:24,1],
+  "LF (%)"=ttable[13:24,1]/19*100,
+  "EF (n=19)"=ttable[13:24,2],
+  "EF (%)"=ttable[13:24,2]/19*100,
+  check.names=F
+)
+
+ctable3a=ctable2[c(1,3,5,7,9,11),]
+ctable3b=ctable2[c(2,4,6,8,10,12),]
+```
+```{r echo=FALSE, results="asis"}
+print(xtable::xtable(rbind(ctable3a,ctable3b),
+                     digits=0, 
+                     align=c("@{}l", "@{}l", "c", "c", "c", "c@{}"),
+                     type="latex",
+                     caption="Counts and proportion of factive responses per item, per condition"),
+      include.rownames=F,
+      comment=F, 
+      hline.after = c(-1,0,6,12)
+      )
+```
+
+Turning to the proportion of non-factive responses in the early focus condition, it is observed that the figures are consistently smaller than 50%. This suggests that although the early focus condition is compatible with both "factive" verb (with a non-factive meaning) and non-factive verb completions, there is a preference for non-factive completions.
+
+<!--
+#### The distribution of factive responses per condition
+```{r echo=FALSE}
+nfactf=sum(subset(le, answer_type==1&condition=="f")$answer_type)
+nfactnf=sum(subset(le, answer_type==1&condition=="nf")$answer_type)
+nfactfA=sum(subset(le, answer_type==1&condition=="f"&list=="A")$answer_type)
+nfactfAtot=sum(subset(le, answer_type==1&list=="A")$answer_type)
+nfactfB=sum(subset(le, answer_type==1&condition=="f"&list=="B")$answer_type) 
+nfactfBtot=sum(subset(le, answer_type==1&list=="B")$answer_type)
+```
+Of the 149 factive responses in total, 98 (66%) were observed in the late focus condition and 51 (34%) in the early focus condition. Breaking down this overall proportion into the proportion of factive responses per list revealed a discrepancy between the lists: While 65 factive responses were observed in the late focus condition in list A (85%), 33 factive responses were observed in the late focus condition in list B (45%).
+
+```{r echo=FALSE, results="asis"} 
+# print(xtable::xtable(
+#   data.frame("obs"=c("number of factive responses in the late focus condition (count)","total number of factive responses (count)","proportion of factive responses in the late focus condition (%)"),"overall"=c(nfactf,nfact,nfactf*100/nfact),"list A"=c(nfactfA,nfactfAtot,nfactfA*100/nfactfAtot),"list B"=c(nfactfB,nfactfBtot,nfactfB*100/nfactfBtot)), 
+#   align=c("@{}l", "@{}l", "c", "c", "c@{}"),
+#   digits=c(0,0,0,0,0),
+#   type="latex",
+#   caption="Proportion of factive responses in the late focus condition"),
+#   comment=F, 
+#   include.rownames = F
+#   )
+```
+
+
+#### Comparing pairs of items across lists
+When the proportion of factive responses for each experimental item type was computed across conditions, that is, across lists, it appeared that focus position did have an effect on the type of completion. This is visible in Table 2. 86% of responses to the set of items in the late focus condition in list A were factive completions, compared to 45% of factive responses to the same set of items in the early focus condition in list B. 45% of factive responses to the set of items in the late focus condition in list B were factive completions, compared to 14% of factive responses to the same set of items in the early focus condition in list A. That is, on average, a given item triggered more factive responses when it was in the late focus condition, compared to when it was in the early focus condition.
+
+This pattern is also seen when looking at the comparison between individual item pairs. The barplot below plots the proportion of factive responses per item. The numbers on the x axis correspond to sentences' identifiers. The annotations "f" and "nf" correspond respectively to the late and early focus conditions. That the blue bars, for items in the factive condition, are higher than the corresponding red bars suggests that the manipulation of focus position had an effect.
+
+```{r echo=FALSE, fig.width=7}
+# lea_r=xtabs(lea$answer_type~lea$item_no)
+# leb_r=xtabs(leb$answer_type~leb$item_no)
+# 
+# pl=table(seq(1:24))
+# j=1
+# k=1
+# for (i in seq(from=1,to=2*length(lea_r),by=2)){
+#   pl[i]=lea_r[j]/19
+#   j=j+1
+# }
+# for (i in seq(from=2,to=2*length(leb_r),by=2)){
+#   pl[i]=leb_r[k]/19
+#   k=k+1
+# }
+# 
+# xa=c("7f","7nf","8nf","8f","9f","9nf","10nf","10f","11f","11nf","12nf","12f",
+#      "13f","13nf","14nf","14f","15f","15nf","16nf","16f","17f","17nf","18nf","18f")
+# 
+# xa_o=rep(NA,24)
+# xa_o[seq(from=1, to=length(xa), by=2)]=xa[seq(from=1, to=length(xa), by=2)]
+# xa_e=rep(NA,24)
+# xa_e[seq(from=2, to=length(xa), by=2)]=xa[seq(from=0, to=length(xa), by=2)]
+# 
+# plt<-barplot(pl, xaxt="n", col=c("blue","red","red","blue"), main="Proportion of factive responses per item", ylab="Proportion of factive responses",ylim=c(0,1),cex.lab=0.75,cex.axis=0.75)#,"reaxis.d","blue"))
+# axis(side=1,at=plt,labels=xa_o,cex.axis=0.75, lty=4, padj=-0.5)
+# axis(side=1,at=plt,labels=xa_e,cex.axis=0.75, lty=4, padj=1)
+
+``` 
+-->
+
+<!-- ### By speaker breakdown -->
+<!-- Given that the audio stimuli were provided by multiple speakers, it is useful to analyze the results by considering speaker as a factor. -->
+<!-- ```{r echo=FALSE} -->
+<!-- do=le[le$item_no%in%c(7,8,9,10,11,12),] -->
+<!-- ikb=le[le$item_no%in%c(13,14,15),] -->
+<!-- de=le[le$item_no%in%c(16,17,18),] -->
+
+<!-- tdo=ftable(do$answer_type,do$condition,do$list) -->
+<!-- tikb=ftable(ikb$answer_type,ikb$condition,ikb$list) -->
+<!-- tde=ftable(de$answer_type,de$condition,de$list) -->
+<!-- tdo -->
+<!-- tikb+tde -->
+<!-- ``` -->
+
+<!-- ### By subjects analysis -->
+<!-- n=37 -->
+
+<!-- What do we expect? .5 factive responses, or .33? -->
+
+<!-- ```{r echo=FALSE} -->
+<!-- as_per_subject=data.frame(xtabs(le$answer_type~le$subject)) -->
+<!-- plot(count(as_per_subject[,2]),xlim=c(0,12),main="Count of the number of participants per number of factive responses") -->
+<!-- abline(v=mean(as_per_subject[,2])) -->
+<!-- abline(v=median(as_per_subject[,2]),lty=2)  -->
+<!-- ``` -->
+<!-- ```{r echo=FALSE} -->
+<!-- #as_per_subjectA=data.frame(xtabs(lea$answer_type~lea$subject)) -->
+<!-- #as_per_subjectB=data.frame(xtabs(leb$answer_type~leb$subject)) -->
+
+<!-- #plot(count(as_per_subjectA[,2]),xlim=c(0,12)) -->
+<!-- #abline(v=mean(as_per_subjectA[,2])) -->
+<!-- #plot(count(as_per_subjectB[,2]),xlim=c(0,12)) -->
+<!-- #abline(v=mean(as_per_subjectB[,2])) -->
+<!-- ``` -->
+
+## Neg-raising and comprehension
+
+```{r echo=FALSE}
+ln=droplevels(subset(l, item_type=="n"))
+ln$answer_type=0
+ln[ln$answer=="Başkanın düşüncesi 'ortak bir karara varmak zor olmayacak' şeklinde."|ln$answer=="Ayşe'nin düşüncesi 'yağmur yağmıyor' şeklinde.",]$answer_type=1
+# We code all low negation interpretations as 1.
+
+# Comprehension items
+lc=droplevels(subset(l, item_type=="c"))
+lc$condition=NA
+lc[lc$list=="A"&lc$item_no=="35",]$condition="nf"
+lc[lc$list=="A"&lc$item_no=="36",]$condition="f"
+lc[lc$list=="B"&lc$item_no=="35",]$condition="f"
+lc[lc$list=="B"&lc$item_no=="36",]$condition="nf"
+lc$answer_type=0
+lc[lc$answer=="Öğretmen Paris'te yaşamış."|lc$answer=="Referandumu yüzde yüzle kazanmış.",]$answer_type=1
+# Proportion of factive vs. non-factive responses in each condition, in list A, B and pooled
+lca=droplevels(subset(lc,lc$list=="A"))
+lca_results=xtabs(lca$answer_type/19~lca$condition)
+lcb=droplevels(subset(lc,lc$list=="B"))
+lcb_results=xtabs(lcb$answer_type/19~lcb$condition)
+lc_results=xtabs(lc$answer_type/38~lc$condition)
+# Is there a difference between the two items?
+lc_item_results=xtabs(lc$answer_type~lc$item_no+lc$list)
+lc_item_results[,1]=lc_item_results[,1]/19
+lc_item_results[,2]=lc_item_results[,2]/19
+
+```
+
+Table 3 reports the results of the comprehension task appended to the end of the main study. In this task, participants were played two full attitude reports introduced by the predicate "bil-" ("S bil- p"), one with early focus and one with late focus. They were then asked to choose between two sentences describing the state of the world given what they heard. One option corresponded to the factive entailment ("p"), and the other to the negation of the presence of a factive entailment ("not necessarily p"). 
+
+Respectively 100% and 95% of entailment responses were given to the two items in the late focus condition (97% in total), while 68% and 63% percent of entailment responses were given to the corresponding items in the early focus condition (66% in total). 
+```{r echo=FALSE}
+lctable=data.frame(
+  "Item"=c("Comprehension 1", "Comprehension 2", "Total"),
+  "Late focus (n=19)"=c(lc_item_results[1,2],lc_item_results[2,1], (lc_item_results[1,2]+lc_item_results[2,1])/2)*100,
+  "Early focus (n=19)"=c(lc_item_results[1,1],lc_item_results[2,2], (lc_item_results[1,1]+lc_item_results[2,2])/2)*100,
+  check.names=F
+)
+```
+```{r echo=FALSE, results="asis"}
+#lc_results
+#print(xtable::xtable(lc_item_results))
+print(xtable::xtable(lctable,
+                     digits=0,
+                     caption="Proportion of factive entailment responses per sentence, per focus position"
+                     ),
+      comment=F)
+```
+Consequently, there is a strong preference for computing the factive entailment when the matrix verb "bil" is prosodically focused. This preference is weaker when an item in the embedded clause is prosodically focused.
+
+Table 4 reports the results of the task designed to assess the preference for embedded negation interpretations over matrix negation interpretations with the neg-raising verb "dusun" ("think"). Participants listened to two attitude reports and were asked to choose between the two (embedded or matrix negation) interpretation options. For the two experimental items, there were 74% and 76% of embedded negation responses respectively with a total of 75%.
+
+```{r echo=FALSE}
+neg_means=as.vector(tapply(ln$answer_type,ln$item_no,mean))
+neg_sums=as.vector(tapply(ln$answer_type,ln$item_no,sum))
+negtable=data.frame(
+  "Item"=c("Neg-raising 1", "Neg-raising 2", "Total"),
+  "Proportion embedded negation (n=38)"=c(neg_means[1],neg_means[2],(neg_sums[1]+neg_sums[2])/(38*2))*100,
+  check.names=F
+)
+```
+```{r echo=FALSE, results="asis"}
+print(xtable::xtable(negtable,
+                     digits=0,
+                     caption="Proportion of embedded negation readings"
+                     ),
+      comment=F)
+```
+
+These data suggests that there is an overall preference for the embedded negation interpretation with neg-raising predicates.
+
+
+
+# Discussion and concluding remarks
+The results of the main experiment and of the comprehension task strongly suggest that Turkish speakers make use of early prosodic information to predict the semantic class proposition embedding verbs. It is likely that given these results that early focus is associated with non-factive verb completions, and that late focus is associated with factive verb completions.
+
+A naive explanation for this phenomenon would state that attitude verbs are lexically specified to occur with certain prosodic contours. To make an analogy, in the same way that encountering an item "neither" might push the listener to expect an upcoming "nor", encountering the pitch contour associated with an attitude verb would give rise to the expectation of that attitude verb. However, this perspective is not sustainable given that the prosodic phenomena underlying this study are regular phenomena, and are independent from attitude verbs. Moreover, the association between attitude verbs, prosodic structure and interpretation is fluid. 
+
+There is one way in which this could be made to work, which I leave for further research. Bolinger (via Beaver & Clark 2008) notes the following contrast: With an unaccusative verb like "come", the subject receives default accent, but with an unergative verb like "eat", the verb itself receives default accent.
+
+1. My MOTHER is coming.
+2. \#My MOTHER is eating.
+3. My mother is EATING.
+
+Similar differences in default accent placement obtain for Turkish attitude verbs when they are used with non-sentential complements. With "bil", the default pattern is to stess the predicate. With "dusun", on the other hand, the default pattern is to stress the complement. Shifting stress to the other item might result, e.g., in a contrastive interpretation. 
+
+1. Ankarayi BILIYORUM.   
+I know Ankara.
+2. ANKARAYI dusunuyorum.   
+I'm thinking about Ankara.
+
+The main results of this paper could perhaps be reduced to this property of attitude verbs, which might in turn be structural reflexes.
+
+A final note concerns the process underlying the prediction of attitude verbs. In the early focus condition, the listener has positive evidence that they have encountered a focus site. Assume that this leads the listener to entertain two hypotheses: "san" and "bil", which are both compatible with early focus. The preference for "san" might be due to the fact that "san" is more specific to early focus environments. (An alternative, though related hypothesis, might go like this: "san" is a relatively bleached attitude verb, whereas "bil" imposes additional evidential requirements. Given that the context is silent about whether those requirements are satisfied, prefer the more neutral attitude verb.) 
+
+In the late focus condition, the listener must make two predictions. Given that they have not heard a focused element, they must predict that the focused element is upcoming. Based on this projection, they must make a prediction about which attitude verbs are possible. A question that remains open at this stage is whether the listener entertains all options, e.g., "bil" and "san", and then filters "san" out based on the fact that a focused "san" type verb imposes conditions on the discourse that were not satisfied in the stimuli? Or does the listener make the right prediction immediately, and posits only "bil".
+
+Luckily, all of this seems testable.
+
+<!-- What model? Global filter? It's just that it's odd to have focused believe type verbs. -->
+
+<!-- What features are relevant? Detecting post focal compression or not.   -->
+
+<!-- But when the embedded verb, there is no PFC. So, other features? -->
